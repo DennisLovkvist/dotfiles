@@ -8,7 +8,8 @@
 if [ -n "$DISPLAY" ]; then
 
 
-	OUTPUT=$(xrandr | grep " connected" | awk '{print $1}')
+	OUTPUT=$(xrandr | grep -E "DP-[0-9]+ connected" | awk '{print $1}')
+
 
 	AVAILABLE_RESOLUTIONS=$(xrandr | grep -A10 "^"$OUTPUT" connected" | grep -oP '^[ ]*\K[0-9]+x[0-9]+')
 
@@ -24,7 +25,7 @@ if [ -n "$DISPLAY" ]; then
 
 fi
 
-
+alias dropbox='HOME=/mnt/cryptdata dropbox start'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
